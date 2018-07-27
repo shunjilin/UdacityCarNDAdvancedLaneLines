@@ -6,5 +6,5 @@ My submission for term 1 project 4, see [advanced_lane_lines.ipynb](./advanced_l
 
 In this project, your goal is to write a software pipeline to identify the lane boundaries in a video, but the main output or product we want you to create is a detailed writeup of the project.
 
-<img src="./writeup_images/projectlane.png" width="480" alt="Combined Image" />
+<img src="./writeup_images/projectlane.png" />
 
