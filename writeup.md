@@ -38,7 +38,7 @@ The goals / steps of this project are the following:
 
 You're reading it!
 
-All implentations/code are located in ./advanced_lane_lines.ipynb
+All implentations/code are located in [./advanced_lane_lines.ipynb](./advanced_lane_lines.ipynb)
 
 ### Camera Calibration
 
@@ -54,7 +54,6 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 1. Provide an example of a distortion-corrected image.
 
-To demonstrate this step, I will describe how I apply the distortion correction to one of the test images like this one:
 ![alt text][image2]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
@@ -118,7 +117,9 @@ Here is an example of the lane line being plotted back to the road image, along 
 
 #### 1. Provide a link to your final video output.  Your pipeline should perform reasonably well on the entire project video (wobbly lines are ok but no catastrophic failures that would cause the car to drive off the road!).
 
-Finally, I implemented a Line class to store/cache important states in order to improve the performance of lane detection on the project video.
+The final pipeline involves applying the transformations in the order: undistort, color and gradient threshold, warp. It also involves projecting the lane lines onto the frame, along with the curvature radius and offset values.
+
+In addition, I implemented a Line class to store/cache important states in order to improve the performance of lane detection on the project video.
 
 This class keeps track of a buffer of (max) 10 valid pairs (frames) of lane lines, so that an average of these lane lines can be taken to be projected onto the video. This smoothens the lane line projections, and reduces jitter.
 
