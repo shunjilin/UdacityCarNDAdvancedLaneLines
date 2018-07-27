@@ -127,7 +127,7 @@ I also have a tolerance factor of 5 for each coefficient of the polynomial for t
 
 Overall the above operations allowed the lane line projection to work reasonably well on the project video.
 
-Here's a [link to my video result](./project_video.mp4)
+Here's a [link to my video result](./output_video.mp4)
 
 ---
 
