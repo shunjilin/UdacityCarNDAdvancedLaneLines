@@ -58,7 +58,7 @@ I then used the output `objpoints` and `imgpoints` to compute the camera calibra
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
-I used a combination of color (HLS) and gradient (sobel in x-axis) thresholds to generate a binary image. The thresholds were fine tuned to create clear lane lines with minimal noise on the test images for ./project_video.mp4. Here's an example of my output for this step:
+I used a combination of RGB and HLS thresholds to get a binary image that identifies the yellow and white lines. The thresholds were fine tuned to create clear lane lines with minimal noise on the test images for ./project_video.mp4. Here's an example of my output for this step:
 
 ![alt text][image3]
 
@@ -123,7 +123,7 @@ In addition, I implemented a Line class to store/cache important states in order
 
 This class keeps track of a buffer of (max) 10 valid pairs (frames) of lane lines, so that an average of these lane lines can be taken to be projected onto the video. This smoothens the lane line projections, and reduces jitter.
 
-I also have a tolerance factor of 5 for each coefficient of the polynomial for the lane lines, such that the difference between the current frame's lane lines' coefficients and the prior lane lines' coefficients (average of the lane lines in the buffer) cannot be more than 5x the current lane lines' coefficients. Otherwise, the frame's lane lines are dropped. This removes some unwanted noisy lines. Finally a limit of 5 consecutive drops is allowed until the buffers are cleared and new lines have to be redrawned, so that the buffer is too far back in terms of frames.
+I also have a tolerance factor of 5 for the gradient of the lane lines, such that the difference between the current frame's lane lines' gradient and the prior lane lines' (average of buffer) gradient (at the start and end of the lane line projection) cannot be more than 5x the current lane lines' gradient. Otherwise, the frame's lane lines are dropped. This removes some unwanted noisy lines. Finally a limit of 20 consecutive drops is allowed until the buffers are cleared and new lines have to be redrawned, so that the buffer is too far back in terms of frames.
 
 Overall the above operations allowed the lane line projection to work reasonably well on the project video.
 
@@ -135,4 +135,4 @@ Here's a [link to my video result](./output_video.mp4)
 
 #### 1. Briefly discuss any problems / issues you faced in your implementation of this project.  Where will your pipeline likely fail?  What could you do to make it more robust?
 
-The main issue with my implementation as is is that it is currently overfitting the project video, and unable to deal with the harder videos. For the challenge video, the pipeline is sometimes mistaking the middle of the lane as a lane line, and one way to deal with that would be to ensure that the lane lines are consistently apart by a minimum distance. For the harder challenge video, the lighting varies quite significantly, and getting the pipeline to work on that video would probably require further fine tuning the gradient and color thresholds.
+For the harder challenge video, the lighting varies quite significantly, and getting the pipeline to work on that video would probably require further fine tuning the gradient and color thresholds.
